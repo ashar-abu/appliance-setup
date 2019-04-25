@@ -29,3 +29,15 @@ samba_shares:
 dragonfly_mta_insecure: false
 dragonfly_mta_securetransfer: true
 dragonfly_mta_starttls: true
+
+
+appliance_admin_user_common_runtime_config_directory: "/home/{{ appliance_admin_user }}/.ccf/etc"
+appliance_admin_user_secrets_directory: "/home/{{ appliance_admin_user }}/.ccf/secrets"
+traefik_ccf_container_path: /opt/unblock-ccf-containers/uh-traefik
+mysql_ccf_container_path: /opt/unblock-ccf-containers/uh-mysql
+mysql_exporter_ccf_container_path: /opt/unblock-ccf-containers/uh-mysql-exporter
+prometheus_ccf_container_path: /opt/unblock-ccf-containers/uh-prometheus
+loki_ccf_container_path: /opt/unblock-ccf-containers/uh-loki
+grafana_ccf_container_path: /opt/unblock-ccf-containers/uh-grafana
+portainer_ccf_container_path: /opt/unblock-ccf-containers/uh-portainer
+uh_health_ccf_container_path: /opt/unblock-ccf-containers/uh-ticket

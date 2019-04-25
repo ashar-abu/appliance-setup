@@ -1,0 +1,51 @@
+---
+- name: Unblock Health CCF Containers.
+  hosts: all
+  vars_files:
+    - ../conf/appliance.common.ansible-vars.yml
+    - ../conf/appliance.secrets.ansible-vars.yml
+  tasks:
+    - include_vars:
+        file: /home/{{ appliance_admin_user }}/container.secrets.conf.jsonnet
+        name: credential
+
+    - name: Clone Unblock health Private CCF Containers
+      git:
+        name: https://{{ credential.gitUserId | urlencode }}:{{ credential.gitHubAccessToken | urlencode }}@github.com/unblock-health/cf-ccf-containers.git
+        dest: '{{ unblock_health_containers_path }}'
+        force: yes
+
+    - name: Create Appliance Admin User Common runtime config and Secrets directory
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - '{{ appliance_admin_user_common_runtime_config_directory }}'
+        - '{{ appliance_admin_user_secrets_directory }}'
+
+    - name: Go to Traefik directory and install Traefik routing CCF Container service
+      command: chdir={{ traefik_ccf_container_path }} ccfmake start
+
+    - name: Go to Mysql directory and install mysql CCF Container service
+      command: chdir={{ mysql_ccf_container_path }} ccfmake start
+
+    - name: Go to Mysql exporter directory and install Mysql exporter CCF Container service
+      command: chdir={{ mysql_exporter_ccf_container_path }} ccfmake start
+
+    - name: Go to prometheus directory and install prometheus CCF Container service
+      command: chdir={{ prometheus_ccf_container_path }} ccfmake start
+
+    - name: Go to Loki directory and install Loki CCF Container service  
+      command: chdir={{ loki_ccf_container_path }} ccfmake start
+
+    - name: Go to grafana directory and install grafana CCF Container service
+      command: chdir={{ grafana_ccf_container_path }} ccfmake start
+
+    - name: Go to portainer directory and install portainer CCF Container service
+      command: chdir={{ portainer_ccf_container_path }} ccfmake start
+
+    - name: Install Unblock Health Container service
+      command: chdir={{ uh_health_ccf_container_path }} ccfmake start
+
+    - name: Allow Prometheus container to acces node_exporter port in docker host through docker bridge network
+      shell: ufw allow in on `echo br-$(docker network ls -f name=appliance | awk '{if (NR!=1) {print}}' | awk '{print $1}')` to any port 9100
