@@ -18,7 +18,7 @@ sudo ansible-galaxy install robertdebock.ara
 
 export ASF_HOME=/etc/appliance-setup-framework
 title "Download distribution into $ASF_HOME"
-sudo git clone --recurse https://github.com/shah/appliance-setup-framework $ASF_HOME
+sudo git clone --recurse https://github.com/unblock-health/appliance-setup $ASF_HOME
 
 title "Prepare appliance secrets configuration"
 sudo cp $ASF_HOME/conf/appliance.secrets-tmpl.ansible-vars.yml $ASF_HOME/conf/appliance.secrets.ansible-vars.yml
