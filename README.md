@@ -30,7 +30,7 @@ NOTE: the user you create is called the *admin user* below.
 After Ubuntu operating system installation is completed, log into the server as the *admin user* (see above).
 
 Bootstrap the core utilities:
-
+	
     sudo apt update && sudo apt install net-tools curl -y && \
     curl https://raw.githubusercontent.com/unblock-health/appliance-setup/master/bin/bootstrap.sh | bash
 
@@ -46,25 +46,25 @@ create a new file using the below command
 
 Refer **container.secrets.conf.tmpl.jsonnet** to fill the keys (Key indicates the following things )
 
-  "domainName": "The domain as how we need to access the URLs related with this application",
-  "rootPassword": "The mysql root password",
-  "mysqlUser": "The mysql username",
-  "mysqlDatabase": "The mysql database name",
-  "mysqlPassword": "Mysql database password",
-  "sslEnable": "false",
-  "grafanaAdminUser": "admin",
-  "grafanaAdminPassword": "Grafana admin password",
-  "installSecret": "The unblock health ticket install secret string, use a strong string",
-  "installName": "The title on broweser tab",
-  "adminFirstname": "Admin",
-  "adminLastname": "User",
-  "adminEmail": "The admin email address",
-  adminUsername: "ostadmin",
-  "adminPassword": "The unblock health ticket admin password ",
-  "smtpHost": "The smtp server name using to send mails",
-  "smtpPort": "The smtp port number",
-  "smtpUser": "The smtp username using to send mails",
-  "smtpPassword": "The smtp password using to send mails"
+    "domainName": "The domain as how we need to access the URLs related with this application",
+    "rootPassword": "The mysql root password",
+    "mysqlUser": "The mysql username",
+    "mysqlDatabase": "The mysql database name",
+    "mysqlPassword": "Mysql database password",
+    "sslEnable": "false",
+    "grafanaAdminUser": "admin",
+    "grafanaAdminPassword": "Grafana admin password",
+    "installSecret": "The unblock health ticket install secret string, use a strong string",
+    "installName": "The title on broweser tab",
+    "adminFirstname": "Admin",
+    "adminLastname": "User",
+    "adminEmail": "The admin email address",
+    adminUsername: "ostadmin",
+    "adminPassword": "The unblock health ticket admin password ",
+    "smtpHost": "The smtp server name using to send mails",
+    "smtpPort": "The smtp port number",
+    "smtpUser": "The smtp username using to send mails",
+    "smtpPassword": "The smtp password using to send mails"
  
 
 ## Install software
