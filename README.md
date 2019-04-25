@@ -1,4 +1,4 @@
-# Welcome to the Appliance Setup Framework (ASF)
+# Welcome to the Unblock Health Appliance Setup Framework (ASF)
 
 ## Server software requirements
 
@@ -32,7 +32,7 @@ After Ubuntu operating system installation is completed, log into the server as 
 Bootstrap the core utilities:
 
     sudo apt update && sudo apt install net-tools curl -y && \
-    curl https://raw.githubusercontent.com/shah/appliance-setup-framework/master/bin/bootstrap.sh | bash
+    curl https://raw.githubusercontent.com/unblock-health/appliance-setup/master/bin/bootstrap.sh | bash
 
 After bootstrap.sh is complete, exit the shell.
 
@@ -41,11 +41,31 @@ After bootstrap.sh is complete, exit the shell.
 After you've exited, log back in as the *admin user* and review the appliance.secrets.ansible-vars.yml file to customize it for your installation. 
 
     cd /etc/appliance-setup-framework/conf
-    sudo vi appliance.secrets.ansible-vars.yml
+create a new file using the below command
+    sudo vi container.secrets.conf.jsonnet
 
-The **appliance.secrets-tmpl.ansible-vars.yml** file is a template (sample), and the **appliance.secrets.ansible-vars.yml** is what will be used by the Ansible and related setup utilities.
+Refer **container.secrets.conf.tmpl.jsonnet** to fill the keys (Key indicates the following things )
 
-If you have any custom playbooks, add them to /etc/appliance-setup-framework/playbooks. The bin/setup.sh utility will run all numbered playbooks in numerical order. 
+  "domainName": "The domain as how we need to access the URLs related with this application",
+  "rootPassword": "The mysql root password",
+  "mysqlUser": "The mysql username",
+  "mysqlDatabase": "The mysql database name",
+  "mysqlPassword": "Mysql database password",
+  "sslEnable": "false",
+  "grafanaAdminUser": "admin",
+  "grafanaAdminPassword": "Grafana admin password",
+  "installSecret": "The unblock health ticket install secret string, use a strong string",
+  "installName": "The title on broweser tab",
+  "adminFirstname": "Admin",
+  "adminLastname": "User",
+  "adminEmail": "The admin email address",
+  adminUsername: "ostadmin",
+  "adminPassword": "The unblock health ticket admin password ",
+  "smtpHost": "The smtp server name using to send mails",
+  "smtpPort": "The smtp port number",
+  "smtpUser": "The smtp username using to send mails",
+  "smtpPassword": "The smtp password using to send mails"
+ 
 
 ## Install software
 
@@ -56,24 +76,3 @@ After setup is completed, reboot the server (Docker setup will be incomplete wit
 
     sudo reboot
 
-## Batteries Included
-
-The ASF comes with everything you need to run a secure, minimally hardended, appliance for custom on-premise or cloud software. That includes:
-
-* Base Ubuntu 18.04 LTS with automatic security updates turned on
-* UFW and fail2ban
-* OpenSSH
-* ZSH with Oh My ZSH! and Antigen
-* Ansible and ARA
-* Docker with [Container Configuration Framework](/shah/container-config-framework) and [docker-gen](https://github.com/jwilder/docker-gen)
-* osQuery
-* Outbound SMTP relay via DragonFly MTA (dma) and mailutils, no incoming e-mails are allowed though
-* Python and PIP
-* Samba with admin home available as a share
-* prometheus-node-exporter
-* prometheus-osquery-exporter
-* htop, jsonnet, jq
-
-## TODO
-
-* ARA doesn't seem to be recording Ansible Playbook output, need to check out why
