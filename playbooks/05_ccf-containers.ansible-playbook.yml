@@ -11,7 +11,7 @@
 
     - name: Clone Unblock health Private CCF Containers
       git:
-        name: https://{{ credential.gitUserId | urlencode }}:{{ credential.gitHubAccessToken | urlencode }}@github.com/unblock-health/cf-ccf-containers.git
+        name: https://{{ credential.gitUserId | urlencode }}:{{ credential.gitHubAccessToken | urlencode }}@github.com/unblock-health/uh-ccf-containers.git
         dest: '{{ unblock_health_containers_path }}'
         force: yes
 
