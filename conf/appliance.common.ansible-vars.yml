@@ -41,3 +41,4 @@ loki_ccf_container_path: /opt/unblock-ccf-containers/uh-loki
 grafana_ccf_container_path: /opt/unblock-ccf-containers/uh-grafana
 portainer_ccf_container_path: /opt/unblock-ccf-containers/uh-portainer
 uh_health_ccf_container_path: /opt/unblock-ccf-containers/uh-ticket
+unblock_health_containers_path: /opt/unblock-ccf-containers
