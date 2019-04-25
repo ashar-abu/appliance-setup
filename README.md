@@ -54,6 +54,8 @@ Refer **container.secrets.conf.tmpl.jsonnet** to fill the keys (Key indicates th
     sslEnable: "false",
     grafanaAdminUser: "admin",
     grafanaAdminPassword: "Grafana admin password",
+    gitUserId: "Github user id to access the private repositries of the application",
+    gitHubAccessToken: "Github Access token to access the private repositries of the application",
     installSecret: "The unblock health ticket install secret string, use a strong string",
     installName: "The title on broweser tab",
     adminFirstname: "Admin",
